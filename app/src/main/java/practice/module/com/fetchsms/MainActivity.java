@@ -1,14 +1,14 @@
 package practice.module.com.fetchsms;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //check if the permission is not granted
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS)!= PackageManager.PERMISSION_GRANTED){
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onRequestPermissionResult(int requestCode,String permssions[],int[] grantResults){
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode)
         {
             case MY_PERMISSIONS_REQUEST_RECEIVE_SMS:
@@ -47,6 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
+
 }
